@@ -5,7 +5,14 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+# Import our API routes
+from intelligagent.api import users, tickets
+
 app = FastAPI(title="IntelliAgent", version="0.1.0")
+
+# Include our API routers
+app.include_router(users.router)
+app.include_router(tickets.router)
 
 @app.get("/")
 async def root():
